@@ -7,21 +7,19 @@ A **Skills** button for the [DeepSeek Harness](https://github.com/deepseek-ai/de
 
 > 给 DeepSeek Harness 侧边栏加一枚「技能」按钮：点开就是当前会话可用的全部 skill，带中文说明、来源和最近使用，点一行把 `/名字` 复制到剪贴板。
 
-<!-- 有截图就放这里：把图存成 docs/preview.png，然后打开下面这行
 ![preview](docs/preview.png)
--->
 
 ## 功能
 
-| | |
-|---|---|
-| **中文说明** | 每个 skill 配一句中文解释（`lib/zh.json`），界面显示为「中文名｜一句话说明」，英文原文降为次要行 |
-| **中文搜索** | 搜索框同时匹配 名称 / 中文标题 / 中文说明 / 英文描述，敲「表格」也能找到 `office-xlsx` |
-| **键盘操作** | `↑` `↓` 选择、`Enter` 复制、`Esc` 关闭；鼠标悬停同步高亮 |
-| **最近使用** | 复制过的 skill 自动置顶（最多 3 个，存 localStorage），带「最近」标记 |
+|          |                                                              |
+| -------- | ------------------------------------------------------------ |
+| **中文说明** | 每个 skill 配一句中文解释（`lib/zh.json`），界面显示为「中文名｜一句话说明」，英文原文降为次要行   |
+| **中文搜索** | 搜索框同时匹配 名称 / 中文标题 / 中文说明 / 英文描述，敲「表格」也能找到 `office-xlsx`      |
+| **键盘操作** | `↑` `↓` 选择、`Enter` 复制、`Esc` 关闭；鼠标悬停同步高亮                      |
+| **最近使用** | 复制过的 skill 自动置顶（最多 3 个，存 localStorage），带「最近」标记               |
 | **来源可见** | 每条标注来自 `.dsh/skills`、`.agents/skills` 还是插件自带，完整路径在 hover 提示里 |
-| **翻译进度** | 底部显示「已翻译/总数」，提醒你还有哪几个没写中文 |
-| **跟随主题** | 颜色全部走 `--dsw-alias-*` 主题 token，深浅色自动切换 |
+| **翻译进度** | 底部显示「已翻译/总数」，提醒你还有哪几个没写中文                                    |
+| **跟随主题** | 颜色全部走 `--dsw-alias-*` 主题 token，深浅色自动切换                       |
 
 数据走官方 `skills/list` Remote，所以看到的目录与输入框里敲 `/` 得到的候选完全一致。
 
@@ -69,10 +67,10 @@ cmd /c mklink /J "$p\node_modules\dsh-skill-panel" "$p\plugins\dsh-skill-panel"
 
 ## 它是怎么工作的
 
-| 半 | 文件 | 职责 |
-|---|---|---|
-| Host | `lib/index.js` | 占一条 Loader row，并提供 `GET /skill-panel/dictionary` 把 `lib/zh.json` 发给面板 |
-| Client | `lib/client.js` | 在 `sidebar.footer.action` 插槽里画按钮，向上弹出浮层 |
+| 半      | 文件              | 职责                                                                    |
+| ------ | --------------- | --------------------------------------------------------------------- |
+| Host   | `lib/index.js`  | 占一条 Loader row，并提供 `GET /skill-panel/dictionary` 把 `lib/zh.json` 发给面板 |
+| Client | `lib/client.js` | 在 `sidebar.footer.action` 插槽里画按钮，向上弹出浮层                               |
 
 客户端是手写的 lazy-CJS 工厂（`window.__ModuleLoader__.load({ id, factory })`），格式与官方发布的 client bundle 相同：外层只注册工厂，模块体在首次物化时才执行，**不需要构建步骤**，改完重启即生效。
 
