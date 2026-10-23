@@ -7,7 +7,7 @@ A **Skills** button for the [DeepSeek Harness](https://github.com/deepseek-ai/de
 
 > 给 DeepSeek Harness 侧边栏加一枚「技能」按钮：点开就是当前会话可用的全部 skill，带中文说明、来源和最近使用，点一行把 `/名字` 复制到剪贴板。
 
-![preview](docs/preview.png)
+![preview](docs/preview1.png)
 
 ## 功能
 
