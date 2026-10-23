@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "note": "skill 名 → 中文标题与一句话说明。改完重启 DSH 生效；面板里点刷新也会重新读取。",
+  "skills": {
+    "ppt-master": {
+      "title": "PPT 大师",
+      "summary": "把 PDF、Word、网页或一句需求做成原生可编辑的 PPTX；也能按图片重建页面、套用模板、给成品加旁白与动画。"
+    },
+    "office": {
+      "title": "Office 总入口",
+      "summary": "按文件类型分派到下面的子技能：读取、创建、编辑、校验 Word / Excel / PPT / PDF。"
+    },
+    "office-docx": {
+      "title": "Word 文档",
+      "summary": "创建、读取、编辑和校验 .docx，适合写报告、合同、说明书这类长文档。"
+    },
+    "office-xlsx": {
+      "title": "Excel 表格",
+      "summary": "读取、创建、编辑工作簿与公式，处理数据表和报表（.xlsx）。"
+    },
+    "office-pptx": {
+      "title": "PowerPoint 演示",
+      "summary": "创建、读取、编辑、校验 .pptx，直接在幻灯片里改文字、形状和版式。"
+    },
+    "office-render": {
+      "title": "文档渲染成图",
+      "summary": "用 LibreOffice Kit 把文档渲染成图片，用来检查版面或做预览图。"
+    },
+    "office-export-pdf": {
+      "title": "导出 PDF",
+      "summary": "用 LibreOffice Kit 把 Office 文档转成 PDF，适合定稿分发。"
+    },
+    "office-recalculate": {
+      "title": "表格重算",
+      "summary": "刷新 Excel 的公式缓存并核对计算结果，改完数据后校对用。"
+    },
+    "diagnose-windows-sandbox-acl": {
+      "title": "Windows 沙箱诊断",
+      "summary": "排查 DSH 沙箱在 Windows 上莫名其妙的拒绝访问，并修复它证明有问题的目录 ACL。"
+    },
+    "token-budget-guard": {
+      "title": "Token 用量守护",
+      "summary": "汇报当前对话的 Token 消耗与进度，超过阈值时提醒你收尾。"
+    },
+    "archify": {
+      "title": "架构图",
+      "summary": "用 JSON 描述结构，渲染成架构图、流程图、时序图、数据流图和生命周期图。"
+    }
+  }
+}

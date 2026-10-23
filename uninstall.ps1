@@ -1,4 +1,4 @@
-# 从 DSH profile 里撤掉 dsh-skill-panel。
+﻿# 从 DSH profile 里撤掉 dsh-skill-panel。
 #
 #   .\uninstall.ps1                   # 处理默认的 desktop profile
 #   .\uninstall.ps1 -Profile web
@@ -51,7 +51,10 @@ if ($null -ne $manifest.dsh -and $null -ne $manifest.dsh.profile -and $null -ne 
   $kept = @($manifest.dsh.profile.bundles) | Where-Object { $_ -ne 'dsh-skill-panel' }
   $manifest.dsh.profile | Add-Member -NotePropertyName bundles -NotePropertyValue $kept -Force
 }
-$manifest | ConvertTo-Json -Depth 20 | Set-Content -Encoding UTF8 $manifestPath
+# 写回时必须用「无 BOM 的 UTF-8」：profile 的 package.json 是用 JSON.parse 读的，
+# 开头的 U+FEFF 会让它直接抛 "Unexpected token"，整个 DSH 起不来。
+$json = $manifest | ConvertTo-Json -Depth 20
+[System.IO.File]::WriteAllText($manifestPath, $json + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
 
 Write-Host '已从 profile 的 package.json 摘掉 dsh-skill-panel'
 Write-Host '重启 DeepSeek Harness 后，「技能」按钮就会消失。'

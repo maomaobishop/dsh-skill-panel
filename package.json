@@ -1,8 +1,8 @@
 {
   "name": "dsh-skill-panel",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
-  "description": "Skills button for the DeepSeek Harness sidebar: browse and invoke the installed skill catalog of the current session.",
+  "description": "Skills button for the DeepSeek Harness sidebar: browse the session skill catalog with Chinese descriptions, search, keyboard navigation and recent picks.",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -63,3 +63,4 @@
     "manifestVersion": 1
   }
 }
+

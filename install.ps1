@@ -1,4 +1,4 @@
-# 把 dsh-skill-panel 装进一个 DSH profile。
+﻿# 把 dsh-skill-panel 装进一个 DSH profile。
 #
 #   .\install.ps1                     # 装进默认的 desktop profile
 #   .\install.ps1 -Profile web        # 装进 web profile
@@ -62,7 +62,10 @@ if ($bundles -notcontains 'dsh-skill-panel') {
   $manifest.dsh.profile | Add-Member -NotePropertyName bundles -NotePropertyValue ($bundles + 'dsh-skill-panel') -Force
 }
 
-$manifest | ConvertTo-Json -Depth 20 | Set-Content -Encoding UTF8 $manifestPath
+# 写回时必须用「无 BOM 的 UTF-8」：profile 的 package.json 是用 JSON.parse 读的，
+# 开头的 U+FEFF 会让它直接抛 "Unexpected token"，整个 DSH 起不来。
+$json = $manifest | ConvertTo-Json -Depth 20
+[System.IO.File]::WriteAllText($manifestPath, $json + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
 
 Write-Host "已安装到 $target"
 Write-Host "已登记到 $manifestPath（备份：package.json.bak-skill-panel）"
